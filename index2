@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruojing Hu | Graduate Radiographer ePortfolio</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Space Mono', 'monospace'],
+                    },
+                    colors: {
+                        ris: {
+                            950: '#020617', // Deepest Slate
+                            900: '#0f172a', // Dark Slate
+                            800: '#1e293b', // Card Slate
+                            700: '#334155', // Border Slate
+                            500: '#0ea5e9', // Medical Cyan/Teal
+                            400: '#38bdf8', // Light Cyan
+                            300: '#7dd3fc',
+                        }
+                    },
+                    animation: {
+                        'scanline': 'scanline 4s linear infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        scanline: {
+                            '0%': { top: '0%', opacity: '0' },
+                            '10%': { opacity: '1' },
+                            '90%': { opacity: '1' },
+                            '100%': { top: '100%', opacity: '0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #020617; /* ris-950 */
+            color: #f8fafc;
+        }
+
+        /* Typography for Academic Text */
+        .academic-text {
+            text-align: justify;
+            text-justify: inter-word;
+            line-height: 1.85;
+            font-size: 0.95rem;
+            color: #cbd5e1; /* slate-300 */
+        }
+        
+        @media (min-width: 768px) {
+            .academic-text {
+                font-size: 1.05rem;
+            }
+        }
+
+        /* Abstract Tech Grid Background */
+        .bg-tech-grid {
+            background-image: 
+                linear-gradient(rgba(51, 65, 85, 0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(51, 65, 85, 0.3) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Glassmorphism & UI Accents */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.7); /* ris-900 */
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(51, 65, 85, 0.6); /* ris-700 */
+        }
+
+        /* UI Corner Brackets */
+        .tech-bracket {
+            position: relative;
+        }
+        .tech-bracket::before, .tech-bracket::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border-color: #0ea5e9;
+            border-style: solid;
+            transition: all 0.3s ease;
+        }
+        .tech-bracket::before {
+            top: -1px; left: -1px;
+            border-width: 2px 0 0 2px;
+        }
+        .tech-bracket::after {
+            bottom: -1px; right: -1px;
+            border-width: 0 2px 2px 0;
+        }
+        .group:hover .tech-bracket::before, .group:hover .tech-bracket::after {
+            width: 25px; height: 25px;
+            border-color: #38bdf8;
+        }
+
+        /* X-Ray Scanner Animation Box */
+        .xray-container {
+            position: relative;
+            overflow: hidden;
+            background-color: #000;
+            border: 1px solid #334155;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.8), 0 0 20px rgba(14, 165, 233, 0.1);
+        }
+        .scanner-line {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #0ea5e9;
+            box-shadow: 0 0 15px 5px rgba(14, 165, 233, 0.5), 0 -5px 10px rgba(14, 165, 233, 0.3);
+            z-index: 10;
+        }
+
+        /* Tabs Logic (MRPBA) */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .tab-btn {
+            border-left: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .tab-btn.active {
+            background: rgba(14, 165, 233, 0.1);
+            border-left-color: #0ea5e9;
+            color: #38bdf8;
+        }
+
+        /* Accordion Logic (Learning Skills) */
+        .accordion-wrapper {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .accordion-wrapper.active {
+            grid-template-rows: 1fr;
+        }
+        .accordion-inner {
+            overflow: hidden;
+        }
+        .accordion-btn.active .acc-icon {
+            transform: rotate(180deg);
+            color: #0ea5e9;
+        }
+        .accordion-btn.active {
+            border-color: rgba(14, 165, 233, 0.5);
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body class="antialiased selection:bg-ris-500 selection:text-white relative">
+
+    <!-- Global Background Elements -->
+    <div class="fixed inset-0 bg-tech-grid pointer-events-none -z-20"></div>
+    <!-- Deep blue glow blobs for ambient lighting -->
+    <div class="fixed top-0 left-0 w-[500px] h-[500px] bg-ris-500/5 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+    <div class="fixed bottom-0 right-0 w-[600px] h-[600px] bg-ris-500/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 glass-panel border-t-0 border-l-0 border-r-0 border-b border-ris-700/50" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-4 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-10 h-10 bg-ris-950 border border-ris-500 text-ris-400 flex items-center justify-center font-bold text-xl tech-bracket">
+                        RH
+                    </div>
+                    <div>
+                        <span class="font-bold text-xl tracking-wider text-white block leading-none font-sans uppercase">RadFolio</span>
+                        <span class="text-[10px] font-mono text-ris-400 uppercase tracking-[0.2em] block mt-1">SYS_ID: GRAD_RAD</span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-1 items-center bg-ris-950/80 p-1.5 rounded border border-ris-700/50 font-mono text-xs tracking-wider">
+                    <a href="#home" class="text-slate-400 hover:text-ris-300 hover:bg-ris-800 px-4 py-2 rounded transition-all uppercase">SYS_Home</a>
+                    <a href="#capabilities" class="text-slate-400 hover:text-ris-300 hover:bg-ris-800 px-4 py-2 rounded transition-all uppercase">MRPBA_Cap</a>
+                    <a href="#learning-skills" class="text-slate-400 hover:text-ris-300 hover:bg-ris-800 px-4 py-2 rounded transition-all uppercase">Learn_Skills</a>
+                    <a href="#qualities" class="text-slate-400 hover:text-ris-300 hover:bg-ris-800 px-4 py-2 rounded transition-all uppercase">Grad_Quals</a>
+                </div>
+
+                <div class="hidden md:flex">
+                     <a href="#contact" class="bg-ris-500/10 text-ris-300 border border-ris-500/50 hover:bg-ris-500 hover:text-white px-6 py-2.5 rounded font-mono text-xs uppercase tracking-widest transition-all shadow-[0_0_10px_rgba(14,165,233,0.2)] hover:shadow-[0_0_20px_rgba(14,165,233,0.5)] flex items-center gap-2">
+                        <i class="fas fa-shield-alt"></i> Secure CV
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-ris-300 focus:outline-none p-2 bg-ris-800 rounded border border-ris-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-ris-900 border-b border-ris-700 absolute w-full left-0 shadow-2xl font-mono text-sm uppercase tracking-wider">
+            <div class="px-4 py-4 space-y-2 flex flex-col">
+                <a href="#home" class="mobile-link text-slate-300 hover:bg-ris-800 hover:text-ris-300 block px-4 py-3 rounded transition-colors">SYS_Home</a>
+                <a href="#capabilities" class="mobile-link text-slate-300 hover:bg-ris-800 hover:text-ris-300 block px-4 py-3 rounded transition-colors">MRPBA_Capabilities</a>
+                <a href="#learning-skills" class="mobile-link text-slate-300 hover:bg-ris-800 hover:text-ris-300 block px-4 py-3 rounded transition-colors">Learning_Skills</a>
+                <a href="#qualities" class="mobile-link text-slate-300 hover:bg-ris-800 hover:text-ris-300 block px-4 py-3 rounded transition-colors">Graduate_Qualities</a>
+                <div class="pt-4 border-t border-ris-700">
+                    <a href="#contact" class="mobile-link bg-ris-500 text-ris-950 block text-center px-4 py-3 rounded font-bold shadow-[0_0_15px_rgba(14,165,233,0.4)]">
+                        <i class="fas fa-lock mr-2"></i> Request Secure CV
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="pt-32 pb-20 md:pt-48 md:pb-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-screen flex items-center">
+        <div class="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-16 w-full">
+            
+            <!-- Hero Text Content -->
+            <div class="w-full lg:w-1/2 space-y-8 z-10 text-center lg:text-left">
+                <div class="inline-flex items-center gap-3 px-4 py-2 rounded bg-ris-900/80 border border-ris-700 text-ris-300 text-xs font-mono tracking-[0.2em] shadow-sm uppercase">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-ris-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-ris-500"></span>
+                    </span>
+                    Professional ePortfolio
+                </div>
+                
+                <h1 class="text-4xl md:text-5xl lg:text-7xl font-sans font-extrabold tracking-tight text-white leading-[1.1]">
+                    Ruojing Hu
+                    <span class="block mt-3 text-transparent bg-clip-text bg-gradient-to-r from-ris-300 to-ris-500 pb-2">
+                        Graduate Radiographer
+                    </span>
+                </h1>
+                
+                <p class="text-base md:text-lg text-slate-400 leading-relaxed max-w-xl mx-auto lg:mx-0 border-l-2 border-ris-700 pl-4 text-justify sm:text-left">
+                    Welcome to my RadFolio. I am a dedicated Graduate Radiographer with a unique interdisciplinary background encompassing medical radiation sciences, information technology, and digital health. This portfolio curates my clinical capabilities, reflective learning practices, and academic qualities as I transition into professional practice.
+                </p>
+                
+                <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start font-mono text-sm uppercase tracking-widest">
+                    <a href="#capabilities" class="bg-ris-500 text-ris-950 px-8 py-4 rounded font-bold hover:bg-ris-400 transition-all shadow-[0_0_20px_rgba(14,165,233,0.3)] hover:shadow-[0_0_30px_rgba(14,165,233,0.5)] flex items-center justify-center gap-3">
+                        <i class="fas fa-terminal"></i> Initialize Review
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Hero Visual: X-Ray Scanner Box -->
+            <div class="w-full sm:w-3/4 lg:w-1/2 relative">
+                <div class="absolute -inset-4 bg-gradient-to-tr from-ris-500/10 via-transparent to-ris-500/10 rounded blur-xl z-0 pointer-events-none"></div>
+                
+                <div class="xray-container aspect-[4/5] w-full max-w-md mx-auto z-10 rounded tech-bracket p-1 bg-ris-900 group">
+                    <!-- Base Image Placeholder -->
+                    <div class="w-full h-full relative overflow-hidden bg-ris-950 rounded-sm">
+                        <!-- Simulated Anatomy/Tech background -->
+                        <div class="absolute inset-0 opacity-40 bg-[url('https://placehold.co/600x750/020617/334155?text=Diagnostic+Imaging\nSYS.READY')] bg-cover bg-center grayscale mix-blend-screen"></div>
+                        
+                        <!-- Telemetry Overlay -->
+                        <div class="absolute top-4 left-4 z-30 font-mono text-[10px] text-ris-400 leading-tight tracking-widest opacity-80 group-hover:opacity-100 transition-opacity">
+                            <div class="flex items-center gap-1.5 mb-2 text-emerald-400 font-bold">
+                                <i class="fas fa-circle text-[8px] animate-pulse"></i> SYS.ONLINE
+                            </div>
+                            <div>ID: HU_R_GRAD</div>
+                            <div>STUDY: PORTFOLIO_REVIEW</div>
+                            <div>MODALITY: CR/DR/CT/MR</div>
+                        </div>
+                        
+                        <div class="absolute bottom-4 right-4 z-30 font-mono text-[10px] text-ris-400 text-right leading-tight tracking-widest opacity-80 group-hover:opacity-100 transition-opacity">
+                            <div>WL: 400 / WW: 2000</div>
+                            <div>FOV: 100%</div>
+                            <div class="mt-2 text-ris-500 border border-ris-500/50 px-1 inline-block bg-ris-900/50">kVp: 75 | mAs: 3.2</div>
+                        </div>
+
+                        <!-- Center Crosshairs -->
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-30">
+                            <div class="w-px h-full bg-ris-500"></div>
+                            <div class="h-px w-full bg-ris-500 absolute"></div>
+                            <div class="w-16 h-16 border border-ris-500 rounded-full absolute"></div>
+                        </div>
+                        
+                        <!-- Animated Scanner Line -->
+                        <div class="scanner-line animate-scanline"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="capabilities" class="py-24 relative border-t border-ris-800 bg-ris-950/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="mb-12">
+                <div class="flex items-center gap-3 mb-2 font-mono text-xs text-ris-500 tracking-[0.2em] uppercase">
+                    <i class="fas fa-folder-open"></i> Directory / Section 1.0
+                </div>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight">MRPBA Capabilities</h2>
+                <div class="h-1 w-24 bg-ris-500 mt-6 shadow-[0_0_10px_rgba(14,165,233,0.5)]"></div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+                
+                <!-- Tab Navigation (Left Side) -->
+                <div class="w-full lg:w-1/3">
+                    <div class="sticky top-28 glass-panel p-6 rounded-lg tech-bracket">
+                        <p class="text-slate-400 mb-6 text-sm leading-relaxed font-mono">
+                            > Select a diagnostic domain to review academic text regarding clinical evidence and self-aware limitations.
+                        </p>
+                        <div class="flex flex-col space-y-2 font-mono text-sm uppercase tracking-wider" role="tablist">
+                            <button class="tab-btn active text-left py-4 px-5 rounded bg-ris-950/50 text-slate-400 hover:text-white hover:bg-ris-800 focus:outline-none flex items-center gap-4 group" data-tab="tab-ethics" role="tab">
+                                <i class="fas fa-hand-holding-medical text-lg opacity-70 group-hover:opacity-100 group-hover:text-ris-400 transition-colors"></i>
+                                <span>Domain 1: Ethical</span>
+                            </button>
+                            <button class="tab-btn text-left py-4 px-5 rounded bg-ris-950/50 text-slate-400 hover:text-white hover:bg-ris-800 focus:outline-none flex items-center gap-4 group" data-tab="tab-comm" role="tab">
+                                <i class="fas fa-comments text-lg opacity-70 group-hover:opacity-100 group-hover:text-ris-400 transition-colors"></i>
+                                <span>Domain 2: Comm</span>
+                            </button>
+                            <button class="tab-btn text-left py-4 px-5 rounded bg-ris-950/50 text-slate-400 hover:text-white hover:bg-ris-800 focus:outline-none flex items-center gap-4 group" data-tab="tab-evidence" role="tab">
+                                <i class="fas fa-microscope text-lg opacity-70 group-hover:opacity-100 group-hover:text-ris-400 transition-colors"></i>
+                                <span>Domain 3: Evidence</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content (Right Side) -->
+                <div class="w-full lg:w-2/3">
+                    <div class="glass-panel p-8 sm:p-10 rounded-lg tech-bracket min-h-[500px] relative bg-ris-900/40">
+                        
+                        <!-- Content: Domain 1 -->
+                        <div id="tab-ethics" class="tab-content active" role="tabpanel">
+                            <h3 class="text-2xl font-bold text-white mb-2 font-sans">Domain 1: Ethical Conduct</h3>
+                            <div class="font-mono text-xs text-ris-500 mb-6 border-b border-ris-700/50 pb-4 tracking-widest uppercase">File: ethics_reflection.doc // Status: Verified</div>
+                            <p class="academic-text">
+                                As a developing diagnostic radiographer, my commitment to professional and ethical conduct is grounded in a patient-centric philosophy, a principle heavily reinforced through my ongoing role as a Responder Volunteer with St John Ambulance. In this capacity, and throughout my varied clinical placements, I have consistently prioritised patient safety, advocacy, and informed consent. For example, when performing mobile radiography in intensive care units, I meticulously verified patient identities and communicated procedures clearly, even to non-responsive patients, upholding their dignity. My ethical framework is further guided by the ALARA principle, ensuring radiation doses are minimised, particularly for vulnerable demographics such as paediatric and geriatric patients encountered in community health settings. Evidence of this capability is demonstrated in my clinical assessment rubrics, where I consistently achieved high ratings for patient care and ethical practice. However, a self-aware limitation I have encountered is the emotional toll of empathetic engagement, particularly in trauma and acute care scenarios. Initially, I found it challenging to compartmentalise the distress of patients from my technical duties. Through structured reflective practice and seeking mentorship from clinical educators, I have developed strategies to maintain professional boundaries while delivering compassionate care. This balance is crucial as I transition into professional practice, ensuring I can provide sustainable, high-quality healthcare without experiencing emotional burnout. Furthermore, my understanding of ethical conduct extends to maintaining strict patient confidentiality and privacy, a competency I seamlessly integrate with my background in Information Technology to ensure the secure handling of digital health records. Ultimately, my diverse experiences have cultivated a robust ethical foundation, preparing me to navigate the complex moral landscapes of modern medical radiation sciences with integrity.
+                            </p>
+                        </div>
+
+                        <!-- Content: Domain 2 -->
+                        <div id="tab-comm" class="tab-content" role="tabpanel">
+                            <h3 class="text-2xl font-bold text-white mb-2 font-sans">Domain 2: Communication</h3>
+                            <div class="font-mono text-xs text-ris-500 mb-6 border-b border-ris-700/50 pb-4 tracking-widest uppercase">File: comm_collaboration.doc // Status: Verified</div>
+                            <p class="academic-text">
+                                Effective professional communication and multidisciplinary collaboration are cornerstones of my clinical practice, essential for optimizing patient outcomes and streamlining departmental workflows. During my clinical placements, particularly within high-pressure emergency departments, I actively honed my ability to communicate critical information clearly and concisely. Operating within a fast-paced trauma environment demanded precise coordination with emergency physicians, nurses, and allied health professionals. I frequently utilized structured communication tools, such as the ISBAR framework, to deliver highly accurate clinical handovers, a skill initially cultivated during my tenure with St John Ambulance. My portfolio includes an anonymized clinical evaluation highlighting my proactive communication during complex mobile C-arm fluoroscopy procedures in the operating theatre, where strict adherence to sterile field protocols and real-time dialogue with surgical teams were paramount. Despite these successes, I acknowledge a limitation in my early clinical experiences regarding navigating hierarchical communication structures. Initially, I exhibited hesitancy in questioning imaging requests that appeared misaligned with clinical indications, deferring heavily to senior medical staff. Recognising this as a barrier to optimal patient care, I actively engaged in role-playing scenarios and sought feedback to develop assertive, yet respectful, communication strategies. Consequently, I now confidently engage in interdisciplinary dialogues to clarify ambiguous requests, ensuring that every examination is justified and tailored to the patient's specific diagnostic needs. Furthermore, my proficiency in Mandarin Chinese and professional English has proven invaluable in culturally diverse clinical settings, enabling me to build rapport, ease anxieties, and facilitate clear instructions for non-English speaking patients. This bilingual capability, combined with my dedication to collaborative practice, positions me as an effective and culturally competent communicator within any multidisciplinary healthcare team.
+                            </p>
+                        </div>
+
+                        <!-- Content: Domain 3 -->
+                        <div id="tab-evidence" class="tab-content" role="tabpanel">
+                            <h3 class="text-2xl font-bold text-white mb-2 font-sans">Domain 3: Evidence-Based Practice</h3>
+                            <div class="font-mono text-xs text-ris-500 mb-6 border-b border-ris-700/50 pb-4 tracking-widest uppercase">File: evidence_based.doc // Status: Verified</div>
+                            <p class="academic-text">
+                                My approach to evidence-based practice and professional learning is defined by a rigorous commitment to integrating current research with clinical applications, significantly augmented by my interdisciplinary academic background. Holding a Master in Computing and Information Technology, I possess a unique vantage point on the digital transformation of medical imaging. I actively synthesize this knowledge to critically evaluate emerging technologies, such as my extensive academic literature review assignment on radiation dose reduction in Digital Subtraction Angiography (DSA). This coursework traced the evolution from traditional radiomics to advanced generative artificial intelligence models, demonstrating my capacity to engage with cutting-edge academic discourse. I apply this evidence-based mindset directly to my clinical practice, utilizing platforms like RIS/PACS systems not merely as operational tools, but as interfaces for optimizing diagnostic quality. Evidence of my commitment to professional learning is further reflected in my active student membership with the Australian Society of Medical Imaging and Radiation Therapy (ASMIRT). However, a critical self-aware limitation lies in the translation of theoretical, IT-driven concepts into immediate, practical clinical workflows. While I possess a deep understanding of algorithms in imaging, I sometimes find myself over-analyzing the technical parameters rather than relying on established heuristic clinical judgments during high-throughput scenarios. To mitigate this, I have implemented a structured self-auditing process, comparing my academic insights against standardized facility reference levels, as evidenced by a comprehensive quality control audit assignment I completed on digital mammography detector homogeneity. This continuous cycle of research, application, and critical reflection ensures that my practice remains grounded in robust evidence while remaining adaptable to the practical realities of diagnostic radiography.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="learning-skills" class="py-24 relative border-t border-ris-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-3 mb-2 font-mono text-xs text-ris-500 tracking-[0.2em] uppercase justify-center w-full">
+                    <i class="fas fa-network-wired"></i> Directory / Section 2.0
+                </div>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight">Learning Skills</h2>
+                <div class="h-1 w-24 bg-ris-500 mt-6 mx-auto shadow-[0_0_10px_rgba(14,165,233,0.5)]"></div>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Accordion Item 1 -->
+                <div class="glass-panel rounded-lg tech-bracket bg-ris-900/30">
+                    <button class="accordion-btn w-full px-6 py-6 text-left flex justify-between items-center focus:outline-none rounded-lg group border border-transparent transition-colors" onclick="toggleAccordion(this)">
+                        <div class="flex items-center gap-5">
+                            <div class="w-10 h-10 font-mono bg-ris-950 border border-ris-600 text-ris-400 flex items-center justify-center shrink-0 group-hover:border-ris-400 transition-colors shadow-inner">
+                                01
+                            </div>
+                            <span class="text-lg md:text-xl font-bold text-white tracking-wide font-sans">Reflective Practice</span>
+                        </div>
+                        <div class="w-8 h-8 rounded bg-ris-800 flex items-center justify-center shrink-0 border border-ris-700">
+                            <i class="fas fa-chevron-down acc-icon text-slate-400 text-sm transition-transform duration-300"></i>
+                        </div>
+                    </button>
+                    <div class="accordion-wrapper">
+                        <div class="accordion-inner">
+                            <div class="px-6 pb-8 pt-2">
+                                <div class="h-px w-full bg-gradient-to-r from-ris-700 to-transparent mb-6"></div>
+                                <p class="academic-text">
+                                    Reflective practice is the foundational learning skill that drives my continuous professional development and clinical refinement as a diagnostic radiographer. I systematically employ established frameworks, such as Gibbs' Reflective Cycle, to deconstruct clinical encounters, transforming routine experiences into profound learning opportunities. A primary piece of evidence demonstrating this skill is a comprehensive academic case study assignment I authored, which evaluated post-operative mobile chest X-rays and the management of paediatric pneumothorax. By applying the PACEMAN critique criteria, I systematically analyzed my image acquisition techniques, identifying areas for technical improvement while simultaneously reflecting on the emotional dynamics of imaging critically ill children. This structured reflection allowed me to isolate variables—such as exposure parameters, patient positioning, and communication strategies—to formulate actionable goals for subsequent clinical rotations. Nevertheless, an inherent limitation in my early reflective practice was a tendency towards disproportionate self-criticism. Initially, my reflections heavily emphasized technical imperfections, occasionally overshadowing successful patient interactions and overall diagnostic utility. Recognising this cognitive bias, I actively sought to recalibrate my reflective approach by soliciting balanced feedback from clinical educators and peers. I learned to intentionally document instances of clinical success alongside areas for growth, fostering a more sustainable and constructive mindset. This evolution is evident in my recent clinical logs, where I not only critique image quality but also evaluate the efficacy of my patient care interventions and interdisciplinary communication. By embedding this balanced, analytical reflection into my daily routine, I ensure that my clinical knowledge is continuously updated and refined, empowering me to adapt to complex clinical challenges as a graduate practitioner.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 2 -->
+                <div class="glass-panel rounded-lg tech-bracket bg-ris-900/30">
+                    <button class="accordion-btn w-full px-6 py-6 text-left flex justify-between items-center focus:outline-none rounded-lg group border border-transparent transition-colors" onclick="toggleAccordion(this)">
+                        <div class="flex items-center gap-5">
+                            <div class="w-10 h-10 font-mono bg-ris-950 border border-ris-600 text-ris-400 flex items-center justify-center shrink-0 group-hover:border-ris-400 transition-colors shadow-inner">
+                                02
+                            </div>
+                            <span class="text-lg md:text-xl font-bold text-white tracking-wide font-sans">Technical Adaptability</span>
+                        </div>
+                        <div class="w-8 h-8 rounded bg-ris-800 flex items-center justify-center shrink-0 border border-ris-700">
+                            <i class="fas fa-chevron-down acc-icon text-slate-400 text-sm transition-transform duration-300"></i>
+                        </div>
+                    </button>
+                    <div class="accordion-wrapper">
+                        <div class="accordion-inner">
+                            <div class="px-6 pb-8 pt-2">
+                                <div class="h-px w-full bg-gradient-to-r from-ris-700 to-transparent mb-6"></div>
+                                <p class="academic-text">
+                                    Technical adaptability is a critical learning skill that I have aggressively cultivated, leveraging my unique dual background in medical radiation sciences and information technology. Throughout my clinical placements across diverse healthcare settings, I have demonstrated a rapid and proficient acquisition of new technical modalities. I have successfully operated a wide array of digital imaging equipment, seamlessly adapting to disparate user interfaces and operational protocols. My Master's degree in Computing and Information Technology significantly accelerates this learning curve; I instinctively deconstruct the software architecture of RIS/PACS systems, allowing me to troubleshoot minor technical discrepancies and optimize clinical throughput efficiently. Evidence of this adaptability is documented in my clinical assessments, which highlight my swift transition from general radiography to specialized modalities, such as Bone Mineral Densitometry and CBCT dental imaging. However, a self-aware limitation associated with my strong IT background is the occasional predisposition to prioritize technological optimization over immediate holistic patient assessment. In the early stages of my training, I sometimes focused too heavily on mastering the software console interface, momentarily detracting from continuous visual and verbal engagement with the patient. Acknowledging this, I developed a deliberate cognitive strategy: implementing a 'patient-first' checklist prior to interacting with the console. This self-correction ensures that technical proficiency remains a tool to enhance patient care rather than a distraction from it. By consciously synthesizing my technical fluency with empathetic clinical practice, I have honed a learning skill that allows me to navigate the rapidly evolving technological landscape of modern radiology while maintaining uncompromising standards of patient-centric care.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 3 -->
+                <div class="glass-panel rounded-lg tech-bracket bg-ris-900/30">
+                    <button class="accordion-btn w-full px-6 py-6 text-left flex justify-between items-center focus:outline-none rounded-lg group border border-transparent transition-colors" onclick="toggleAccordion(this)">
+                        <div class="flex items-center gap-5">
+                            <div class="w-10 h-10 font-mono bg-ris-950 border border-ris-600 text-ris-400 flex items-center justify-center shrink-0 group-hover:border-ris-400 transition-colors shadow-inner">
+                                03
+                            </div>
+                            <span class="text-lg md:text-xl font-bold text-white tracking-wide font-sans">Clinical Reasoning</span>
+                        </div>
+                        <div class="w-8 h-8 rounded bg-ris-800 flex items-center justify-center shrink-0 border border-ris-700">
+                            <i class="fas fa-chevron-down acc-icon text-slate-400 text-sm transition-transform duration-300"></i>
+                        </div>
+                    </button>
+                    <div class="accordion-wrapper">
+                        <div class="accordion-inner">
+                            <div class="px-6 pb-8 pt-2">
+                                <div class="h-px w-full bg-gradient-to-r from-ris-700 to-transparent mb-6"></div>
+                                <p class="academic-text">
+                                    The development of robust clinical reasoning, particularly within high-stress and unpredictable environments, is a learning skill I have strategically prioritized. This skill demands the rapid synthesis of patient history, physical presentation, and radiographic principles to execute optimal imaging pathways. My clinical placements in bustling emergency departments served as a crucible for this capability. Confronted with acute trauma and complex presentations, I learned to perform dynamic risk assessments and modify standard radiographic projections to accommodate patients with limited mobility or severe distress. A key piece of evidence supporting this is my documented performance in executing independent mobile X-ray examinations across intensive care units, where I had to critically evaluate the patient's immediate medical context, manage life-support equipment safely, and adapt my technique without compromising diagnostic efficacy. A notable limitation I encountered during these high-pressure scenarios was the initial physiological response to stress, which occasionally threatened to impair my decision-making speed. The overwhelming environment of major trauma resuscitations initially induced a degree of cognitive overload. To systematically overcome this, I drew upon the crisis management techniques I developed as a Responder Volunteer with St John Ambulance. I instituted practices of mental rehearsal prior to entering trauma bays and employed tactical breathing to maintain physiological composure. This deliberate conditioning of my clinical reasoning allows me to maintain a grounded presence, enabling precise exposure selection and strict collimation even amidst chaos. By actively seeking out challenging clinical presentations and continuously auditing my decision-making processes against best-practice guidelines, I have cultivated a resilient framework for clinical reasoning.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="qualities" class="py-24 relative border-t border-ris-800 bg-ris-950/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center mb-16">
+                 <div class="inline-flex items-center gap-3 mb-2 font-mono text-xs text-ris-500 tracking-[0.2em] uppercase justify-center w-full">
+                    <i class="fas fa-graduation-cap"></i> Directory / Section 3.0
+                </div>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight">Graduate Qualities</h2>
+                <div class="h-1 w-24 bg-ris-500 mt-6 mx-auto shadow-[0_0_10px_rgba(14,165,233,0.5)]"></div>
+                <p class="mt-6 text-slate-400 font-mono text-xs tracking-widest uppercase">
+                    [ Format: Split-view Medical Dossier // Rubric Alignment Confirmed ]
+                </p>
+            </div>
+
+            <div class="space-y-12">
+                
+                <!-- Dossier 1: Inventiveness -->
+                <div class="glass-panel tech-bracket bg-ris-900/50 flex flex-col lg:flex-row rounded-lg overflow-hidden border border-ris-700 shadow-xl group hover:border-ris-500/50 transition-colors">
+                    
+                    <!-- Left: Metadata/Telemetry -->
+                    <div class="w-full lg:w-1/3 bg-ris-950/90 p-8 border-b lg:border-b-0 lg:border-r border-ris-700/50 flex flex-col justify-center">
+                        <div class="font-mono text-[10px] text-ris-500 mb-2 tracking-[0.2em] border-b border-ris-800 pb-2">QUALITY_01</div>
+                        <h4 class="text-3xl font-bold text-white mb-4 tracking-tight font-sans">Inventiveness</h4>
+                        <div class="border-l-2 border-ris-500 pl-3 mb-8">
+                            <p class="text-xs font-mono text-slate-400 uppercase tracking-wide leading-relaxed">
+                                Interdisciplinary Synthesis <br>& Structured Innovation
+                            </p>
+                        </div>
+                        
+                        <!-- Decorative Telemetry -->
+                        <div class="space-y-3 opacity-60 group-hover:opacity-100 transition-opacity font-mono">
+                            <div>
+                                <div class="flex justify-between text-[9px] text-ris-400 mb-1 tracking-widest"><span class="uppercase">Creative Synthesis</span><span>HIGH</span></div>
+                                <div class="h-1 w-full bg-ris-900 overflow-hidden"><div class="h-full bg-ris-500 w-[95%]"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[9px] text-ris-400 mb-1 tracking-widest"><span class="uppercase">Evidence-Based Framing</span><span>VERIFIED</span></div>
+                                <div class="h-1 w-full bg-ris-900 overflow-hidden"><div class="h-full bg-emerald-500 w-[100%]"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Academic Text -->
+                    <div class="w-full lg:w-2/3 p-8 lg:p-10 flex items-center bg-transparent">
+                        <p class="academic-text !mb-0">
+                            The University of Sydney Graduate Quality of 'Inventiveness' is central to my professional identity, defined by my ability to synthesize disparate ideas across disciplinary conventions to generate novel clinical solutions. My unique academic trajectory—combining a Bachelor of Arts in Shanghai, a Master in Computing and Information Technology in Scotland, and currently diagnostic radiography—provides me with an exceptionally broad cognitive toolkit. I actively leverage my expertise in digital health and web design to conceptualize improvements in patient education and departmental workflows. For instance, drawing upon my IT graduation project in digital health-oriented web design, I possess the capability to envision and develop interactive, accessible digital resources that demystify radiological procedures for diverse patient demographics, thereby reducing pre-procedural anxiety. This interdisciplinary synthesis allows me to approach standard radiographic challenges with fresh, creative perspectives. However, applying inventiveness within the highly regulated, protocol-driven environment of medical imaging presents a distinct limitation. Novel ideas must be meticulously scrutinized for compliance with radiation safety standards, infection control, and established departmental protocols. Initially, my enthusiasm for digital innovation occasionally outpaced the practical constraints of clinical implementation. To address this, I have learned to follow a structured, organized strategy when proposing new concepts, ensuring they are deeply rooted in evidence-based practice and rigorously evaluated against the ALARA principle. By engaging in reflective execution and seeking feedback from senior clinical staff, I ensure my inventive outputs are not only original but feasibly integrated into the clinical environment. This disciplined approach to creativity empowers me to contribute uniquely to a modern radiology department, driving technological advancements while upholding safety.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Dossier 2: Influence -->
+                <div class="glass-panel tech-bracket bg-ris-900/50 flex flex-col lg:flex-row rounded-lg overflow-hidden border border-ris-700 shadow-xl group hover:border-ris-500/50 transition-colors">
+                    <div class="w-full lg:w-1/3 bg-ris-950/90 p-8 border-b lg:border-b-0 lg:border-r border-ris-700/50 flex flex-col justify-center">
+                        <div class="font-mono text-[10px] text-ris-500 mb-2 tracking-[0.2em] border-b border-ris-800 pb-2">QUALITY_02</div>
+                        <h4 class="text-3xl font-bold text-white mb-4 tracking-tight font-sans">Influence</h4>
+                        <div class="border-l-2 border-ris-500 pl-3 mb-8">
+                            <p class="text-xs font-mono text-slate-400 uppercase tracking-wide leading-relaxed">
+                                Empathetic Leadership <br>& Ethical Persuasion
+                            </p>
+                        </div>
+                        <div class="space-y-3 opacity-60 group-hover:opacity-100 transition-opacity font-mono">
+                            <div>
+                                <div class="flex justify-between text-[9px] text-ris-400 mb-1 tracking-widest"><span class="uppercase">Leadership Efficacy</span><span>HIGH</span></div>
+                                <div class="h-1 w-full bg-ris-900 overflow-hidden"><div class="h-full bg-ris-500 w-[92%]"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[9px] text-ris-400 mb-1 tracking-widest"><span class="uppercase">Collaborative Approach</span><span>VERIFIED</span></div>
+                                <div class="h-1 w-full bg-ris-900 overflow-hidden"><div class="h-full bg-emerald-500 w-[100%]"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-2/3 p-8 lg:p-10 flex items-center bg-transparent">
+                        <p class="academic-text !mb-0">
+                            Demonstrating the Graduate Quality of 'Influence' involves ethical persuasion, empathetic leadership, and the willingness to engage with and learn from others, qualities I have extensively developed through clinical practice and community service. My role as an Event Health Services Responder with St John Ambulance has been instrumental in shaping my leadership self-efficacy. In unpredictable emergency situations, I must lead with confidence, delegating tasks and providing clear, stabilizing communication to both patients and peers. I seamlessly translate this leadership into the clinical radiography environment. For example, during complex manual handling scenarios or when coordinating mobile fluoroscopy in the operating theatre, I proactively initiate tasks and assume accountability, guiding junior students and collaborating effectively with senior staff. Evidence of my persuasive influence is best demonstrated in patient interactions, particularly when alleviating the anxieties of vulnerable individuals undergoing procedures like mammography or acute trauma imaging. I employ contextually relevant, ethical persuasion, ensuring patients fully understand the necessity of examinations and the safety measures in place, thereby maximizing their compliance and comfort. A key self-aware limitation in exercising influence is navigating the boundaries of my authority as a student transitioning to a graduate practitioner. I am acutely aware that effective influence relies on competence and trust rather than positional power. To cultivate this, I actively seek out opportunities to engage with professionals beyond my immediate expertise, listening intently to their viewpoints to broaden my clinical understanding. By consistently reflecting on the impact of my communication and prioritizing a collaborative approach, I strive to positively influence department culture and foster shared learning.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Dossier 3: Cultural Competence -->
+                <div class="glass-panel tech-bracket bg-ris-900/50 flex flex-col lg:flex-row rounded-lg overflow-hidden border border-ris-700 shadow-xl group hover:border-ris-500/50 transition-colors">
+                    <div class="w-full lg:w-1/3 bg-ris-950/90 p-8 border-b lg:border-b-0 lg:border-r border-ris-700/50 flex flex-col justify-center">
+                        <div class="font-mono text-[10px] text-ris-500 mb-2 tracking-[0.2em] border-b border-ris-800 pb-2">QUALITY_03</div>
+                        <h4 class="text-3xl font-bold text-white mb-4 tracking-tight font-sans leading-tight">Cultural<br>Competence</h4>
+                        <div class="border-l-2 border-ris-500 pl-3 mb-8">
+                            <p class="text-xs font-mono text-slate-400 uppercase tracking-wide leading-relaxed">
+                                Interdisciplinary <br>& Equitable Care
+                            </p>
+                        </div>
+                        <div class="space-y-3 opacity-60 group-hover:opacity-100 transition-opacity font-mono">
+                            <div>
+                                <div class="flex justify-between text-[9px] text-ris-400 mb-1 tracking-widest"><span class="uppercase">Cultural Humility</span><span>ACTIVE</span></div>
+                                <div class="h-1 w-full bg-ris-900 overflow-hidden"><div class="h-full bg-ris-500 w-[96%]"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[9px] text-ris-400 mb-1 tracking-widest"><span class="uppercase">Bilingual Capacity</span><span>NATIVE/PROF</span></div>
+                                <div class="h-1 w-full bg-ris-900 overflow-hidden"><div class="h-full bg-emerald-500 w-[100%]"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-2/3 p-8 lg:p-10 flex items-center bg-transparent">
+                        <p class="academic-text !mb-0">
+                            Embracing the Graduate Quality of Cultural Competence and Interdisciplinary Engagement is fundamental to providing equitable, high-quality healthcare in a culturally diverse society. My global academic journey across China, the United Kingdom, and Australia has profoundly shaped my worldview, fostering a deep appreciation for diverse cultural perspectives and communication styles. In the clinical setting, I actively leverage my bilingual proficiency in Mandarin Chinese and professional English to dismantle language barriers, providing culturally sensitive care to a broad demographic of patients. This linguistic capability allows me to establish immediate rapport, accurately communicate procedural instructions, and ensure informed consent, significantly enhancing the patient experience for non-native English speakers. Furthermore, my interdisciplinary engagement is evidenced by my proactive collaboration within complex hospital ecosystems. Whether coordinating with ICU nurses for mobile radiography or integrating with surgical teams during fluoroscopy, I consistently strive to understand the priorities and professional languages of allied health and medical colleagues. A recognized limitation in this domain is the inherent risk of unconscious bias and the challenge of navigating cultural nuances that extend beyond language alone. I have occasionally found myself making assumptions based on cultural backgrounds, which can inadvertently affect clinical interactions. To continuously refine my cultural competence, I actively engage in self-reflection and seek out diverse viewpoints, educating myself on the specific healthcare beliefs and practices of various community groups. By maintaining a stance of cultural humility—acknowledging what I do not know and being willing to learn from every patient encounter—I ensure my clinical practice is inclusive, respectful, and highly effective.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 relative border-t border-ris-800 bg-ris-950">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="text-center mb-10">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded border border-ris-500 bg-ris-900/50 text-ris-400 mb-6 shadow-[0_0_15px_rgba(14,165,233,0.2)] tech-bracket">
+                    <i class="fas fa-lock text-2xl"></i>
+                </div>
+                <h3 class="text-3xl font-extrabold text-white mb-4 tracking-tight">Secure Data Request</h3>
+                
+                <div class="bg-amber-900/20 border border-amber-600/50 text-amber-200 p-4 rounded text-left flex items-start gap-4 font-mono text-xs mt-6">
+                    <i class="fas fa-exclamation-triangle mt-0.5 text-amber-500"></i>
+                    <p class="leading-relaxed">
+                        <strong>PRIVACY PROTOCOL ACTIVE:</strong> To adhere to strict professional privacy standards, direct personal contact information, academic transcripts, and specific facility names are omitted from this public domain. Please submit a request below to receive the complete, unredacted Curriculum Vitae.
+                    </p>
+                </div>
+            </div>
+
+            <div class="glass-panel p-8 md:p-10 rounded tech-bracket bg-ris-900/40">
+                <form onsubmit="event.preventDefault(); processForm();" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-[10px] font-mono text-ris-400 mb-2 uppercase tracking-widest">Assessor Name</label>
+                            <input type="text" id="name" required class="w-full bg-ris-950 border border-ris-700 rounded p-4 text-white placeholder-slate-600 focus:outline-none focus:border-ris-500 focus:ring-1 focus:ring-ris-500 transition-all font-mono text-sm" placeholder="e.g., Dr. Smith">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-[10px] font-mono text-ris-400 mb-2 uppercase tracking-widest">Professional Email</label>
+                            <input type="email" id="email" required class="w-full bg-ris-950 border border-ris-700 rounded p-4 text-white placeholder-slate-600 focus:outline-none focus:border-ris-500 focus:ring-1 focus:ring-ris-500 transition-all font-mono text-sm" placeholder="name@hospital.org.au">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-[10px] font-mono text-ris-400 mb-2 uppercase tracking-widest">Request Details</label>
+                        <textarea id="message" rows="3" required class="w-full bg-ris-950 border border-ris-700 rounded p-4 text-white placeholder-slate-600 focus:outline-none focus:border-ris-500 focus:ring-1 focus:ring-ris-500 transition-all resize-none font-mono text-sm" placeholder="Requesting CV for review..."></textarea>
+                    </div>
+                    
+                    <!-- Feedback Message Box (No JS Alert) -->
+                    <div id="form-feedback" class="hidden bg-emerald-900/30 border border-emerald-500 text-emerald-400 px-5 py-4 rounded flex items-center gap-3 font-mono text-xs tracking-wide">
+                        <i class="fas fa-check-circle text-lg"></i>
+                        <span>VERIFICATION COMPLETE. Request logged. CV will be forwarded securely.</span>
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="w-full bg-ris-500/10 border border-ris-500 text-ris-300 hover:bg-ris-500 hover:text-ris-950 font-bold py-4 px-8 rounded transition-all flex items-center justify-center gap-3 font-mono text-sm tracking-widest uppercase">
+                        Initialize Transfer <i class="fas fa-satellite-dish"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#01030b] text-slate-500 pt-16 pb-10 border-t border-ris-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="bg-ris-900/30 p-6 sm:p-8 rounded border border-ris-800 text-sm leading-relaxed text-slate-400 max-w-4xl mx-auto mb-12">
+                <div class="flex items-start gap-4">
+                    <div class="mt-1 w-8 h-8 rounded bg-ris-950 border border-ris-700 text-ris-500 flex items-center justify-center shrink-0">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div>
+                        <strong class="text-white block mb-2 font-mono tracking-widest uppercase text-xs">Acknowledgement of AI Use</strong>
+                        Generative AI (Google Gemini) was utilized during the development of this RadFolio to assist with editing the final product for language and clarity, and changing the tone to ensure academic and professional presentation. All original ideas, clinical experiences, reflections, and source materials are entirely my own work.
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 border-t border-ris-800/50 pt-8 font-mono text-[10px] tracking-widest uppercase">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 border border-ris-700 text-ris-500 flex items-center justify-center font-bold bg-ris-900">RH</div>
+                    <span>Ruojing Hu // Graduate Radiographer ePortfolio</span>
+                </div>
+                <div>
+                    SYS_V.2026 // ALL RIGHTS RESERVED.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Logic
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Tabs Logic (MRPBA Capabilities)
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+
+                btn.classList.add('active');
+                const targetId = btn.getAttribute('data-tab');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        // Accordion Logic (Learning Skills)
+        function toggleAccordion(btn) {
+            const content = btn.nextElementSibling;
+            const isActive = btn.classList.contains('active');
+            
+            // Exclusive Mode: Close others
+            document.querySelectorAll('.accordion-btn').forEach(otherBtn => {
+                otherBtn.classList.remove('active');
+                otherBtn.nextElementSibling.classList.remove('active');
+            });
+
+            if (!isActive) {
+                btn.classList.add('active');
+                content.classList.add('active');
+            }
+        }
+        
+        // Open first accordion on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const firstAcc = document.querySelector('.accordion-btn');
+            if(firstAcc) toggleAccordion(firstAcc);
+        });
+
+        // Secure Form Submission Mock (Privacy Compliant, No alert)
+        function processForm() {
+            const feedbackBox = document.getElementById('form-feedback');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            feedbackBox.classList.remove('hidden');
+            
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-50', 'cursor-not-allowed', 'bg-emerald-900', 'border-emerald-500', 'text-emerald-400');
+            submitBtn.classList.remove('bg-ris-500/10', 'border-ris-500', 'text-ris-300', 'hover:bg-ris-500', 'hover:text-ris-950');
+            submitBtn.innerHTML = 'DATA TRANSMITTED <i class="fas fa-check-double"></i>';
+            
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('message').value = '';
+
+            setTimeout(() => {
+                feedbackBox.classList.add('hidden');
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-emerald-900', 'border-emerald-500', 'text-emerald-400');
+                submitBtn.classList.add('bg-ris-500/10', 'border-ris-500', 'text-ris-300', 'hover:bg-ris-500', 'hover:text-ris-950');
+                submitBtn.innerHTML = 'Initialize Transfer <i class="fas fa-satellite-dish"></i>';
+            }, 4500);
+        }
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                navbar.classList.add('bg-ris-950/90', 'shadow-[0_4px_30px_rgba(0,0,0,0.8)]');
+            } else {
+                navbar.classList.remove('bg-ris-950/90', 'shadow-[0_4px_30px_rgba(0,0,0,0.8)]');
+            }
+        });
+    </script>
+</body>
+</html>

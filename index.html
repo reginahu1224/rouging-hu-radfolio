@@ -235,7 +235,6 @@
     <!-- Background Elements -->
     <div class="fixed inset-0 bg-medical-grid pointer-events-none -z-20"></div>
     <div class="fixed top-20 right-0 w-full h-[300px] opacity-10 pointer-events-none -z-10">
-        <!-- Stylized ECG SVG -->
         <svg viewBox="0 0 1000 100" class="w-full h-full stroke-clinical-500 fill-none" style="stroke-width: 2px;">
             <path d="M0,50 L200,50 L220,30 L240,70 L260,10 L280,90 L300,50 L1000,50" stroke-dasharray="1000" stroke-dashoffset="1000">
                 <animate attributeName="stroke-dashoffset" from="1000" to="0" dur="4s" repeatCount="indefinite" />
@@ -243,10 +242,10 @@
         </svg>
     </div>
     
-    <!-- Deep blue glow blobs -->
     <div class="fixed top-0 left-0 w-[600px] h-[600px] bg-clinical-500/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
     <div class="fixed bottom-0 right-0 w-[600px] h-[600px] bg-clinical-500/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
 
+    <!-- Navigation Bar -->
     <nav class="fixed w-full z-50 top-0 transition-all duration-300 glass-panel border-b-0 border-clinical-700/50" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
@@ -263,6 +262,7 @@
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-2 items-center bg-clinical-950/50 p-1.5 rounded-full border border-clinical-700/50">
                     <a href="#home" class="text-slate-400 hover:text-clinical-300 hover:bg-clinical-800 px-4 py-2 rounded-full text-sm font-medium transition-all">Home</a>
+                    <a href="#experience" class="text-slate-400 hover:text-clinical-300 hover:bg-clinical-800 px-4 py-2 rounded-full text-sm font-medium transition-all">Experience</a>
                     <a href="#capabilities" class="text-slate-400 hover:text-clinical-300 hover:bg-clinical-800 px-4 py-2 rounded-full text-sm font-medium transition-all">Capabilities</a>
                     <a href="#learning-skills" class="text-slate-400 hover:text-clinical-300 hover:bg-clinical-800 px-4 py-2 rounded-full text-sm font-medium transition-all">Learning Skills</a>
                     <a href="#graduate-qualities" class="text-slate-400 hover:text-clinical-300 hover:bg-clinical-800 px-4 py-2 rounded-full text-sm font-medium transition-all">Grad Qualities</a>
@@ -283,10 +283,11 @@
             </div>
         </div>
         
-        <!-- Mobile Menu -->
+        <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-clinical-700 absolute w-full left-0 shadow-2xl">
             <div class="px-4 py-6 space-y-3 flex flex-col">
                 <a href="#home" class="mobile-link text-slate-300 hover:bg-clinical-800 hover:text-clinical-300 block px-4 py-3 rounded-xl text-base font-medium transition-colors">Home</a>
+                <a href="#experience" class="mobile-link text-slate-300 hover:bg-clinical-800 hover:text-clinical-300 block px-4 py-3 rounded-xl text-base font-medium transition-colors">Experience</a>
                 <a href="#capabilities" class="mobile-link text-slate-300 hover:bg-clinical-800 hover:text-clinical-300 block px-4 py-3 rounded-xl text-base font-medium transition-colors">Capabilities (MRPBA)</a>
                 <a href="#learning-skills" class="mobile-link text-slate-300 hover:bg-clinical-800 hover:text-clinical-300 block px-4 py-3 rounded-xl text-base font-medium transition-colors">Learning Skills</a>
                 <a href="#graduate-qualities" class="mobile-link text-slate-300 hover:bg-clinical-800 hover:text-clinical-300 block px-4 py-3 rounded-xl text-base font-medium transition-colors">Graduate Qualities</a>
@@ -299,10 +300,10 @@
         </div>
     </nav>
 
+    <!-- SECTION: HOME -->
     <section id="home" class="pt-32 pb-20 md:pt-44 md:pb-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative flex items-center min-h-[95vh]">
         <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-12 lg:gap-16 w-full">
             
-            <!-- Left: Text Content -->
             <div class="w-full md:w-1/2 space-y-8 text-center md:text-left z-10 reveal">
                 <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-panel border border-clinical-700 text-clinical-300 text-xs font-mono font-bold tracking-widest shadow-sm">
                     <span class="relative flex h-3 w-3">
@@ -339,7 +340,6 @@
                 <div class="xray-box aspect-[4/5] w-full max-w-md mx-auto z-10 animate-float relative">
                     <img src="jpg.jpg" alt="Simulated Medical Profile" class="w-full h-full object-cover xray-image">
                     
-                    <!-- HUD Overlays -->
                     <div class="absolute top-4 left-4 z-30 font-mono text-[10px] text-clinical-400 leading-tight">
                         <div class="flex items-center gap-1.5 mb-2 text-red-400 font-bold">
                             <div class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
@@ -356,20 +356,182 @@
                         <div class="mt-2 text-clinical-500 border border-clinical-500/50 px-1 inline-block">kVp: 70 | mAs: 2.5</div>
                     </div>
 
-                    <!-- Center Crosshair -->
                     <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
                         <div class="w-px h-full bg-clinical-500"></div>
                         <div class="h-px w-full bg-clinical-500 absolute"></div>
                         <div class="w-12 h-12 border border-clinical-500 rounded-full absolute"></div>
                     </div>
                     
-                    <!-- CSS Scanner Line -->
                     <div class="scanner-line animate-scanline"></div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- SECTION: CLINICAL EXPERIENCES (Strictly Chronological Order: Sep 2025 -> Nov 2025 -> May 2026) -->
+    <section id="experience" class="py-20 relative border-t border-clinical-800 bg-clinical-950/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="text-center mb-10 reveal">
+                <div class="inline-flex items-center gap-2 mb-2 text-clinical-500">
+                    <i class="fas fa-hospital-user"></i>
+                    <h2 class="text-xs font-mono font-bold uppercase tracking-widest">Clinical Trajectory</h2>
+                </div>
+                <h3 class="text-3xl md:text-5xl font-extrabold text-white leading-tight">Clinical Placement Experiences</h3>
+                <p class="text-slate-400 max-w-2xl mx-auto mt-4 text-sm leading-relaxed border-l-2 border-clinical-700/60 pl-3">
+                    Curated clinical practicum rotations across community healthcare, public tertiary emergency trauma, and specialized corporate diagnostic suites within the metropolitan network.
+                </p>
+                <div class="h-1 w-24 bg-gradient-to-r from-transparent via-clinical-500 to-transparent mx-auto mt-6"></div>
+            </div>
+
+            <!-- Competency Pills (Positioned below section header and above placement cards) -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-14 reveal">
+                <div class="glass-panel p-3 rounded-xl text-center border border-clinical-700/60 hover:border-clinical-500/50 transition-colors">
+                    <i class="fas fa-bolt text-clinical-400 text-sm mb-1 block"></i>
+                    <span class="text-xs font-mono font-semibold text-slate-200">Acute Trauma & ED</span>
+                </div>
+                <div class="glass-panel p-3 rounded-xl text-center border border-clinical-700/60 hover:border-clinical-500/50 transition-colors">
+                    <i class="fas fa-procedures text-clinical-400 text-sm mb-1 block"></i>
+                    <span class="text-xs font-mono font-semibold text-slate-200">Mobile & ICU Care</span>
+                </div>
+                <div class="glass-panel p-3 rounded-xl text-center border border-clinical-700/60 hover:border-clinical-500/50 transition-colors">
+                    <i class="fas fa-radiation text-clinical-400 text-sm mb-1 block"></i>
+                    <span class="text-xs font-mono font-semibold text-slate-200">Theatre C-Arm Fluoroscopy</span>
+                </div>
+                <div class="glass-panel p-3 rounded-xl text-center border border-clinical-700/60 hover:border-clinical-500/50 transition-colors">
+                    <i class="fas fa-laptop-medical text-clinical-400 text-sm mb-1 block"></i>
+                    <span class="text-xs font-mono font-semibold text-slate-200">RIS/PACS & IT Fluency</span>
+                </div>
+                <div class="glass-panel p-3 rounded-xl text-center border border-clinical-700/60 hover:border-clinical-500/50 transition-colors">
+                    <i class="fas fa-tooth text-clinical-400 text-sm mb-1 block"></i>
+                    <span class="text-xs font-mono font-semibold text-slate-200">CBCT, BMD & Mammo</span>
+                </div>
+                <div class="glass-panel p-3 rounded-xl text-center border border-clinical-700/60 hover:border-clinical-500/50 transition-colors">
+                    <i class="fas fa-language text-clinical-400 text-sm mb-1 block"></i>
+                    <span class="text-xs font-mono font-semibold text-slate-200">Bilingual (English / Mandarin)</span>
+                </div>
+            </div>
+
+            <!-- 3 Placement Cards in Strict Chronological Order -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch reveal">
+                
+                <!-- 1. Chronological Phase 1 (Sep 2025 – Nov 2025): Community Practice -->
+                <div class="glass-panel glass-card rounded-2xl p-7 flex flex-col justify-between border border-clinical-700/70 hover:border-clinical-500/60 transition-all duration-300">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 rounded-full text-[10px] font-mono font-bold bg-clinical-500/10 text-clinical-300 border border-clinical-500/30">STAGE 01 // COMMUNITY</span>
+                            <span class="text-xs font-mono text-slate-400">Sep – Nov 2025</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">Metropolitan Community Imaging Clinic</h4>
+                        <div class="text-xs font-mono text-clinical-400 mb-4 pb-3 border-b border-clinical-700/50">Ambulatory Care & General Radiography</div>
+                        
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4 text-justify">
+                            Managed diverse clinical presentations across the lifespan in a busy multicultural community practice. Adapted radiographic techniques, communication, and immobilization methods to care for paediatric, geriatric, and bariatric patients.
+                        </p>
+                        
+                        <ul class="space-y-2 text-xs text-slate-400 font-sans mb-6">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-clinical-400 mt-0.5"></i>
+                                <span>Maintained smooth departmental workflow, electronic appointments, and image archiving via Karisma RIS/PACS.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-clinical-400 mt-0.5"></i>
+                                <span>Enforced strict ALARA principles through tailored exposure parameters, SID optimization, and tight collimation.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-clinical-400 mt-0.5"></i>
+                                <span>Utilized bilingual skills to assist culturally and linguistically diverse patients, improving compliance and comfort.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pt-4 border-t border-clinical-700/50 flex flex-wrap gap-2 text-[10px] font-mono text-clinical-300">
+                        <span class="bg-clinical-900 px-2 py-1 rounded border border-clinical-700">Karisma RIS/PACS</span>
+                        <span class="bg-clinical-900 px-2 py-1 rounded border border-clinical-700">Paediatric / Geriatric</span>
+                        <span class="bg-clinical-900 px-2 py-1 rounded border border-clinical-700">Dose Minimisation</span>
+                    </div>
+                </div>
+
+                <!-- 2. Chronological Phase 2 (Nov 2025 – Dec 2025): Public Hospital -->
+                <div class="glass-panel glass-card rounded-2xl p-7 flex flex-col justify-between border border-clinical-700/70 hover:border-clinical-500/60 transition-all duration-300">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 rounded-full text-[10px] font-mono font-bold bg-clinical-500/10 text-clinical-300 border border-clinical-500/30">STAGE 02 // PUBLIC TERTIARY</span>
+                            <span class="text-xs font-mono text-slate-400">Nov – Dec 2025</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">Large Metropolitan Public Hospital</h4>
+                        <div class="text-xs font-mono text-clinical-400 mb-4 pb-3 border-b border-clinical-700/50">Radiology Department & Emergency Trauma</div>
+                        
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4 text-justify">
+                            Completed intensive training in a high-volume emergency department managing acute polytrauma and complex presentations. Gained extensive hands-on experience performing independent mobile chest and musculoskeletal examinations across intensive care units and wards.
+                        </p>
+                        
+                        <ul class="space-y-2 text-xs text-slate-400 font-sans mb-6">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-clinical-400 mt-0.5"></i>
+                                <span>Operated mobile C-arm fluoroscopy during surgical procedures adhering strictly to sterile fields.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-clinical-400 mt-0.5"></i>
+                                <span>Observed and assisted in advanced Computed Tomography (CT) patient preparation and contrast workflow.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-clinical-400 mt-0.5"></i>
+                                <span>Utilized ISBAR clinical handovers with multidisciplinary trauma teams and emergency physicians.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pt-4 border-t border-clinical-700/50 flex flex-wrap gap-2 text-[10px] font-mono text-clinical-300">
+                        <span class="bg-clinical-900 px-2 py-1 rounded border border-clinical-700">Trauma / Resus</span>
+                        <span class="bg-clinical-900 px-2 py-1 rounded border border-clinical-700">ICU Mobile X-Ray</span>
+                        <span class="bg-clinical-900 px-2 py-1 rounded border border-clinical-700">C-Arm Fluoroscopy</span>
+                    </div>
+                </div>
+
+                <!-- 3. Chronological Phase 3 (May 2026 – Jul 2026): Corporate Practice -->
+                <div class="glass-panel glass-card rounded-2xl p-7 flex flex-col justify-between border border-clinical-700/70 hover:border-clinical-500/60 transition-all duration-300">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 rounded-full text-[10px] font-mono font-bold bg-clinical-500/10 text-clinical-300 border border-clinical-500/30">STAGE 03 // CORPORATE SUITES</span>
+                            <span class="text-xs font-mono text-slate-400">May – Jul 2026</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">Specialised Corporate Diagnostic Centre</h4>
+                        <div class="text-xs font-mono text-clinical-400 mb-4 pb-3 border-b border-clinical-700/50">Comprehensive Outpatient & Specialized Suites</div>
+                        
+                        <p class="text-slate-300 text-sm leading-relaxed mb-4 text-justify">
+                            Delivered high-volume general digital radiography within a fast-paced metropolitan setting using Visage RIS/PACS. Expanded multimodal competency by actively operating specialized diagnostic imaging equipment with exacting positioning precision.
+                        </p>
+                        
+                        <ul class="space-y-2 text-xs text-slate-400 font-sans mb-6">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-clinical-400 mt-0.5"></i>
+                                <span>Operated Carestream dental & maxillofacial Cone Beam CT (CBCT) systems safely and accurately.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-clinical-400 mt-0.5"></i>
+                                <span>Assisted in screening and diagnostic digital Mammography examinations and quality assurance checks.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-clinical-400 mt-0.5"></i>
+                                <span>Performed Bone Mineral Densitometry (BMD) scans and critical analysis of region-of-interest bone density.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pt-4 border-t border-clinical-700/50 flex flex-wrap gap-2 text-[10px] font-mono text-clinical-300">
+                        <span class="bg-clinical-900 px-2 py-1 rounded border border-clinical-700">Visage RIS/PACS</span>
+                        <span class="bg-clinical-900 px-2 py-1 rounded border border-clinical-700">Dental CBCT</span>
+                        <span class="bg-clinical-900 px-2 py-1 rounded border border-clinical-700">Mammography & BMD</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: CAPABILITIES (MRPBA) -->
     <section id="capabilities" class="py-24 relative border-t border-clinical-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row gap-12">
@@ -464,6 +626,7 @@
         </div>
     </section>
 
+    <!-- SECTION: LEARNING SKILLS -->
     <section id="learning-skills" class="py-24 relative border-t border-clinical-800 bg-clinical-950/50">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 reveal">
@@ -554,6 +717,7 @@
         </div>
     </section>
 
+    <!-- SECTION: GRADUATE QUALITIES -->
     <section id="graduate-qualities" class="py-24 relative border-t border-clinical-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16 reveal">
@@ -569,7 +733,7 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
                 
-                <!-- Quality Card 1: Inventiveness -->
+                <!-- Quality Card 1: Inventiveness (Grounded in Real Multidisciplinary Speech Pathology & Theatre Adaptations) -->
                 <div class="glass-panel glass-card rounded-2xl flex flex-col h-full relative overflow-hidden reveal">
                     <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-clinical-600 to-clinical-400"></div>
                     <div class="p-8 flex-grow">
@@ -577,14 +741,14 @@
                         <h4 class="text-3xl font-bold text-white mb-4">Inventiveness</h4>
                         
                         <p class="text-slate-400 text-sm mb-4 line-clamp-3 italic preview-text">
-                            Synthesizing disparate ideas across disciplinary conventions to create novel digital interfaces, guided by organized planning and reflective execution...
+                            Synthesizing clinical insights across speech pathology, physiotherapy, and surgery to innovate adapted positioning setups and non-standard fluoroscopic solutions...
                         </p>
                         
                         <div class="card-expand" id="card1-content">
                             <div class="card-inner-overflow">
                                 <div class="h-px w-full bg-clinical-700/50 mb-6 mt-2"></div>
                                 <p class="academic-text drop-cap !text-sm !mb-0">
-                                    Inventiveness embodies my capacity to synthesize disparate disciplinary concepts and generate novel clinical solutions that enhance diagnostic efficacy and patient experience. My unique educational trajectory—progressing from a Bachelor of Arts in Shanghai, to a Master of Computing and Information Technology in the UK, to postgraduate Diagnostic Radiography at the University of Sydney—enables me to move effortlessly between creative visual design, computational logic, and clinical science. Connecting these diverse conventions, I conceptualized and developed an innovative digital prototype: an interactive, multilingual pre-procedural visual interface designed to demystify complex diagnostic imaging for anxious paediatric and non-English-speaking patients. Following an organized strategy beyond previously documented departmental processes, I synthesized principles of user-experience design with radiographic positioning requirements, creating an original output that translates procedural instructions into accessible visual infographics. This plan incorporated reflective execution, allowing continuous flexibility based on peer testing and clinical usability feedback. However, introducing inventiveness into a tightly regulated medical radiation setting presents an inherent limitation: creative enthusiasm must never circumvent rigorous radiation safety regulations, infection control, or established clinical governance. Initially, some of my proposed workflow modifications prioritized digital fluidity over strict physical hospital protocol. To reconcile this, I established a disciplined evaluation methodology, rigorously auditing all inventive concepts against the <span class="hl-term">ALARA principle</span>, national diagnostic reference levels, and departmental radiation safety frameworks prior to proposing implementation. This structured approach ensures my creative outputs are not merely novel, but strictly compliant, clinically viable, and patient-safe. By uniting computational inventiveness with disciplined clinical practice, I offer innovative problem-solving that advances departmental efficiency within modern healthcare.
+                                    Inventiveness represents my ability to connect disparate ideas and synthesize disciplinary conventions beyond standard textbook routines to resolve intricate clinical imaging challenges. Across my clinical placements, I consistently encountered patients whose complex physical presentations precluded standard positioning. Rather than viewing non-compliance as a barrier, I actively bridged disciplinary conventions by collaborating with Speech Pathologists during modified barium swallow studies (videofluoroscopy) and Physiotherapists during difficult weight-bearing trauma assessments. For instance, during dynamic swallow studies for acute stroke patients with severe postural instability, I synthesized speech pathologists' knowledge of aspiration biomechanics with radiographic beam geometry. Following an organized strategy beyond previously documented rigid protocols, I innovated an adapted seated positioning setup using specialized radiolucent positioning supports and tailored fluoroscopic pulse rates. This novel workflow minimized aspiration risk, accommodated the patient’s restricted neck extension, and significantly reduced cumulative radiation dose under ALARA principles. Similarly, in the operating theatre alongside orthopaedic surgeons, I executed reflective, flexible plans to capture orthogonal views around complex external fixators. As a tangible output, I formulated an adaptable multidisciplinary fluoroscopy positioning guide for non-standard presentations. However, an essential self-aware limitation I recognized when exercising clinical inventiveness is the risk of prioritization bias—allowing novel procedural improvisation to compromise strict radiation safety standards or anatomical repeatability. Initially, I became so focused on achieving unique diagnostic angles that I occasionally risked sub-optimal collimation margins. To resolve this, I instituted a disciplined self-auditing threshold: every inventive positioning adaptation must be cross-verified against baseline ALARA criteria, anatomical landmarks, and departmental reference levels prior to exposure. This reflective execution ensures my inventiveness remains clinically viable, safe, and collaborative within complex multidisciplinary hospital environments.
                                 </p>
                             </div>
                         </div>
@@ -647,6 +811,7 @@
         </div>
     </section>
 
+    <!-- SECTION: CONTACT & PRIVACY REQUEST -->
     <section id="contact" class="py-24 relative border-t border-clinical-800 bg-clinical-950/80">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-12 reveal">
@@ -655,7 +820,6 @@
                 </div>
                 <h3 class="text-3xl md:text-5xl font-extrabold text-white mb-4">Secure Data Request</h3>
                 
-                <!-- Privacy Protocol Notice -->
                 <div class="bg-yellow-900/20 border-l-4 border-yellow-500 text-yellow-200 p-4 rounded max-w-2xl mx-auto text-left flex items-start gap-4 shadow-sm font-mono text-xs sm:text-sm mt-6">
                     <i class="fas fa-exclamation-triangle mt-1 text-yellow-500 text-lg"></i>
                     <p class="leading-relaxed">
@@ -683,7 +847,6 @@
                         <textarea id="message" rows="3" required class="w-full bg-clinical-950 border border-clinical-700 rounded p-4 text-white placeholder-slate-600 focus:outline-none focus:border-clinical-500 focus:ring-1 focus:ring-clinical-500 transition-all resize-none font-mono text-sm" placeholder="Requesting official CV for the Graduate Radiographer position..."></textarea>
                     </div>
                     
-                    <!-- Feedback message -->
                     <div id="form-feedback" class="hidden bg-emerald-900/30 border border-emerald-500/50 text-emerald-400 px-5 py-4 rounded flex items-center gap-3 font-mono text-sm transition-all">
                         <i class="fas fa-check-circle text-lg"></i>
                         <span>VERIFICATION COMPLETE. Request logged. Full CV will be forwarded securely.</span>
@@ -698,10 +861,10 @@
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer class="bg-[#01030B] text-slate-500 pt-16 pb-8 border-t border-clinical-800/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            <!-- Mandatory AI Acknowledgement -->
             <div class="bg-clinical-900/30 p-6 sm:p-8 rounded-xl border border-clinical-800 text-xs sm:text-sm leading-relaxed text-slate-400 max-w-4xl mx-auto mb-12">
                 <div class="flex items-start gap-4">
                     <div class="mt-1 w-8 h-8 rounded bg-clinical-950 border border-clinical-700 text-clinical-500 flex items-center justify-center shrink-0">
@@ -709,7 +872,7 @@
                     </div>
                     <div>
                         <strong class="text-white block mb-2 font-mono tracking-widest uppercase">Acknowledgement of AI Use</strong>
-                        As per University of Sydney academic integrity guidelines, Generative AI (Google Gemini) was utilized during the development of this RadFolio to assist with editing textual clarity and adapting the tone for academic and professional presentation. <span class="text-clinical-300">All original ideas, clinical reflections, empirical evidence, and professional claims represent my own authentic work and experiences.</span>
+                        As per University of Sydney academic integrity guidelines, Generative AI was utilized during the development of this RadFolio to assist with editing textual clarity and adapting the tone for academic and professional presentation. <span class="text-clinical-300">All original ideas, clinical reflections, empirical evidence, and professional claims represent my own authentic work and experiences.</span>
                     </div>
                 </div>
             </div>
@@ -726,6 +889,7 @@
         </div>
     </footer>
 
+    <!-- SCRIPTS -->
     <script>
         // 1. Mobile Menu Logic
         const mobileBtn = document.getElementById('mobile-menu-btn');
